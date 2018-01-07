@@ -1,7 +1,6 @@
-package com.gradle.demo;
+package com.gradle.KeyStrokeAnalysis;
 
 public interface KeyStrokeAnalysis {
 
      void addKeyStroke(String jsonString);
-     void analyzeKeyStrokeStream();
 }
