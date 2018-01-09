@@ -1,7 +1,7 @@
 package com.gradle.KeyStrokeAnalysis;
 
-import com.gradle.KeyStrokeAnalysis.KeyStrokeAnalysis;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import org.json.JSONObject;
 
 import java.io.*;
@@ -11,7 +11,7 @@ import java.util.LinkedList;
 import java.util.Stack;
 import java.util.stream.Collectors;
 
-@AllArgsConstructor
+@Builder
 public class KeyStrokeAnalysisImpl implements KeyStrokeAnalysis {
 
     private  String fileName ; // logfile path
@@ -21,6 +21,7 @@ public class KeyStrokeAnalysisImpl implements KeyStrokeAnalysis {
     public void addKeyStroke(String jsonString){
 
         JSONObject jsonObject = new JSONObject(jsonString);
+        System.out.println(jsonString);
         jsonObjectStack.push(jsonObject);
     }
 
@@ -97,6 +98,7 @@ public class KeyStrokeAnalysisImpl implements KeyStrokeAnalysis {
     }
 
     public void writeFile(String fileName, ArrayList<Chunk> combinedChunk ) throws IOException {
+        // factor this to the logging package
         FileWriter fileWriter  = new FileWriter( new File(fileName));
 
         Iterator<Chunk> iterator = combinedChunk.iterator();
@@ -107,6 +109,5 @@ public class KeyStrokeAnalysisImpl implements KeyStrokeAnalysis {
         }
         fileWriter.flush();
         fileWriter.close();
-
     }
 }

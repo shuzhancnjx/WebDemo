@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head onload="beginMyEssay(event)">
+<head onload="UUID()">
     <meta charset="UTF-8">
     <title>Web Demo</title>
     <style>#container {width:100%; text-align:center;}</style>
@@ -8,7 +8,7 @@
 
 <body onload="beginMyEssay(event)">
 <div id="container">
-<p> <a href="hello">Please describe your successful examples at work</a> </p>
+<p> <a href="Hello">Please describe your successful examples at work</a> </p>
 
 <form method="post" action="Hello">
     <p>Please enter your text below:</p>
@@ -21,6 +21,10 @@
     <input type="submit" id="SubmitYourText" value="Submit Your Text" onmousedown="endMyEssay(event)"/>
 
     <script type="text/javascript">
+         UUID();
+         function UUID(){
+         uuid = new Date().getTime(); // create a unique ID for this section using Epoch Time;
+         }
 
          function eventLogger(event){
 
@@ -62,15 +66,13 @@
         function ajaxPost(obj){
             var http = new XMLHttpRequest();
             var encodedObj = encodeURI(obj);
-            http.open("POST","http://localhost:8080/WebDemo/logging",true);
+            http.open("POST","http://localhost:8080/WebDemo/Hello",true);
             http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-            http.send("log=" + encodedObj);
+            http.send("log=" + encodedObj + "&uuid=" + uuid);
         }
 
         function time(){
-            var date = new Date();
-            var utcDate = date.toISOString();
-            return utcDate;
+            return new Date().getTime(); // get the time in milliseconds of Epoch Time
         }
 
         function beginMyEssay(event){
