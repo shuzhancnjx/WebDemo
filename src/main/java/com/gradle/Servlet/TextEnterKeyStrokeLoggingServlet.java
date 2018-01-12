@@ -2,6 +2,8 @@ package com.gradle.Servlet;
 
 
 import com.gradle.FileLog.LogToFile;
+import com.gradle.MySql.SqlOperations;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Map;
 
+@SuppressWarnings("unchecked")
 @WebServlet(name = "TextEnterKeyStrokeLoggingServlet", urlPatterns = {"Hello"}, loadOnStartup = 1)
 public class TextEnterKeyStrokeLoggingServlet extends HttpServlet {
     private String uuid="";           // this is the uuid for the text and its keystrokes
@@ -17,6 +20,7 @@ public class TextEnterKeyStrokeLoggingServlet extends HttpServlet {
 
     LogToFile logToFile = new LogToFile(filePathToLog);
     HttpRequestParse httpRequestParse = new HttpRequestParse();
+    SqlOperations sqlOperations = new SqlOperations();
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.getWriter().print("Please describe your successful examples at work");
@@ -42,12 +46,13 @@ public class TextEnterKeyStrokeLoggingServlet extends HttpServlet {
         } else{
             String logs = requestMap.get("log");
             if(uuid.equals(""))
-                uuid = request.getParameter("uuid");
+                uuid = requestMap.get("uuid");
             System.out.println(uuid + " " + logs.toString()); // unique ID from the session
 
             logToFile.logKeyStroke(logs, uuid);
+            sqlOperations.writeToLogTable(uuid, logs);
+            sqlOperations.selectFromLogTable(uuid);
         }
-
     }
 
 }
