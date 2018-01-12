@@ -36,7 +36,6 @@ import java.util.Stack;
         keyStrokeAnalysis.addKeyStroke(logs[0]);
 
     }
-
     public void logJson(String dataLog) throws IOException { // factor this out to the logging package
         File file = new File("/Users/zhanshu/Desktop/log/log.txt");
         FileOutputStream fileOutputStream = new FileOutputStream(file, true);
@@ -44,5 +43,6 @@ import java.util.Stack;
         fileOutputStream.write(dataLogLineBreak.getBytes());
         fileOutputStream.flush();
     }
-    
+
+
 }
