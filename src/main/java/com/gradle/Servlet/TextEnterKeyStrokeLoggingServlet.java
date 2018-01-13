@@ -38,6 +38,8 @@ public class TextEnterKeyStrokeLoggingServlet extends HttpServlet {
                 responseText = "Please enter your text again!";
             } else{
                 logToFile.logText(textInput, uuid);
+                sqlOperations.writeToLogTable(uuid, textInput, "Essay");
+                sqlOperations.selectFromLogTable(uuid, "Essay");
             }
 
             request.setAttribute("res", responseText);
@@ -45,13 +47,12 @@ public class TextEnterKeyStrokeLoggingServlet extends HttpServlet {
 
         } else{
             String logs = requestMap.get("log");
-            if(uuid.equals(""))
-                uuid = requestMap.get("uuid");
+            uuid = requestMap.get("uuid");
             System.out.println(uuid + " " + logs.toString()); // unique ID from the session
 
             logToFile.logKeyStroke(logs, uuid);
-            sqlOperations.writeToLogTable(uuid, logs);
-            sqlOperations.selectFromLogTable(uuid);
+            sqlOperations.writeToLogTable(uuid, logs, "KeyStrokeLog");
+            sqlOperations.selectFromLogTable(uuid, "KeyStrokeLog");
         }
     }
 

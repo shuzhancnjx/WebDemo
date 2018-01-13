@@ -12,7 +12,8 @@ public class SqlOperations {
     private static String userName="root";
     private static String passWord ="";
 
-    final static String tableName = "KeyStrokeLog";
+    final static String tableName1 = "KeyStrokeLog";
+    final static String tableName2 = "Essay";
     final String dbName = "Log";
 
     private Statement statement;
@@ -28,7 +29,8 @@ public class SqlOperations {
             e.printStackTrace();
         } catch (SQLException e){
             createDatabase();
-            createTable();
+            createTable(tableName1);
+            createTable(tableName2);
         }
     }
 
@@ -49,7 +51,7 @@ public class SqlOperations {
         }
     }
 
-    private void createTable(){
+    private void createTable(String tableName){
         try{
             Connection connection = connectToDB(dbName);
             statement = connection.createStatement();
@@ -70,7 +72,7 @@ public class SqlOperations {
 
     }
 
-    public void writeToLogTable(String uuid, String jsonString){
+    public void writeToLogTable(String uuid, String jsonString, String tableName){
 
         try{
             Connection connection = connectToDB(dbName);
@@ -96,7 +98,7 @@ public class SqlOperations {
     }
 
 
-    public void selectFromLogTable(String uuid){
+    public void selectFromLogTable(String uuid, String tableName){
 
 
         try{
@@ -109,10 +111,7 @@ public class SqlOperations {
                     + uuid + "'";
 
             ResultSet resultSet = statement.executeQuery(query);
-
-            while( resultSet.next()){
-                System.out.println(resultSet.getString("uuid") + " " + resultSet.getString("records") );
-            }
+            System.out.println(resultSet.getMetaData() );
             connection.close();
 
         }catch (ClassNotFoundException | SQLException e) {

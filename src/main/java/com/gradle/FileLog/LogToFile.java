@@ -26,7 +26,6 @@ public class LogToFile {
         String dataLogLineBreak = dataToLog + "\n";
         fileOutputStream.write(dataLogLineBreak.getBytes());
         fileOutputStream.flush();
-
     }
 
 }
