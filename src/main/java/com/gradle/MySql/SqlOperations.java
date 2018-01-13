@@ -45,6 +45,7 @@ public class SqlOperations {
             Connection connection = connectToDB("");
             statement = connection.createStatement();
             int result = statement.executeUpdate("CREATE DATABASE IF NOT EXISTS " + dbName);
+            System.out.println("Database created");
             connection.close();
         } catch (ClassNotFoundException | SQLException e){
             e.printStackTrace();
@@ -63,6 +64,7 @@ public class SqlOperations {
                     + "records TEXT,"
                     + "PRIMARY KEY (ID)"
                     + ")";
+
             statement.executeUpdate(sqlOfCreateTable);
             System.out.println("Table created");
             connection.close();
@@ -97,9 +99,7 @@ public class SqlOperations {
         }
     }
 
-
     public void selectFromLogTable(String uuid, String tableName){
-
 
         try{
             Connection connection = connectToDB(dbName);
