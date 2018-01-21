@@ -1,4 +1,4 @@
-package com.gradle.KeyStrokeAnalysis;
+package com.gradle.KeyStrokeAnalysis.Model;
 
 
 import lombok.Builder;

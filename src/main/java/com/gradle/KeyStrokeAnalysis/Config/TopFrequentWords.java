@@ -1,4 +1,4 @@
-package com.gradle.KeyStrokeAnalysis;
+package com.gradle.KeyStrokeAnalysis.Config;
 
 import com.google.common.collect.ImmutableSet;
 
@@ -616,7 +616,7 @@ public class TopFrequentWords {
             "minute",
             "miss",
             "mission",
-            "model",
+            "Model",
             "modern",
             "moment",
             "money",

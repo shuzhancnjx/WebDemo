@@ -1,6 +1,11 @@
 package com.gradle.KeyStrokeAnalysis;
 
-import lombok.AllArgsConstructor;
+import com.gradle.KeyStrokeAnalysis.EditsAnalysis.EditsSummary;
+import com.gradle.KeyStrokeAnalysis.KeyStrokeProcess.KeyStrokeGrouping;
+import com.gradle.KeyStrokeAnalysis.KeyStrokeProcess.TextConstruction;
+import com.gradle.KeyStrokeAnalysis.Model.Chunk;
+import com.gradle.KeyStrokeAnalysis.TimeAnalysis.TimeAnalysisImpl;
+import com.gradle.KeyStrokeAnalysis.TimeAnalysis.TimeDiff;
 import lombok.Builder;
 import org.json.JSONObject;
 

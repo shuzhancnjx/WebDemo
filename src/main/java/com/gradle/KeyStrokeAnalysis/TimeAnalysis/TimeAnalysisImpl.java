@@ -1,5 +1,7 @@
-package com.gradle.KeyStrokeAnalysis;
+package com.gradle.KeyStrokeAnalysis.TimeAnalysis;
 
+import com.gradle.KeyStrokeAnalysis.Config.Punctuations;
+import com.gradle.KeyStrokeAnalysis.Model.Chunk;
 import lombok.Builder;
 import lombok.NonNull;
 
@@ -39,7 +41,7 @@ public class TimeAnalysisImpl implements TimeAnalysis {
                     && nextChunk.actionApplied.startsWith("Insert")){
                 // check if the whitespace is in the middle between pre and following chunks, and the whitespace followed by an insertion
 
-                if(Punctuations.sentenceSepators.contains(preChunk.chunk)){
+                if(Punctuations.sentenceSeparators.contains(preChunk.chunk)){
                     pauseBetweenSentences.add(timeDiff.getTimeDiff(curChunk.startTime, curChunk.endTime));
                 }else {
                     pauseBetweenWords.add(timeDiff.getTimeDiff(curChunk.startTime, curChunk.endTime));

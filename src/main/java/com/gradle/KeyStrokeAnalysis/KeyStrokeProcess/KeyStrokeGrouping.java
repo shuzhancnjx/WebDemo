@@ -1,5 +1,7 @@
-package com.gradle.KeyStrokeAnalysis;
+package com.gradle.KeyStrokeAnalysis.KeyStrokeProcess;
 
+import com.gradle.KeyStrokeAnalysis.Config.Punctuations;
+import com.gradle.KeyStrokeAnalysis.Model.Chunk;
 import lombok.Builder;
 import lombok.NonNull;
 
