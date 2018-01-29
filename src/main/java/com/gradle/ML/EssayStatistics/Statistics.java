@@ -5,7 +5,6 @@ import com.gradle.ML.WordCorrect.WordCorrect;
 import lombok.AllArgsConstructor;
 import java.io.IOException;
 import java.util.List;
-import java.util.stream.Collector;
 
 @AllArgsConstructor
 public class Statistics {
@@ -27,8 +26,7 @@ public class Statistics {
     }
 
     public int getNumberOfWrongWords() throws IOException{
-
         List<String> words= wordSentenceParser.tokenize(essay);
-        return words.stream().map(word -> wordCorrect.rightWord(word)?1:0 ).reduce(0, (x, y)-> x+y);
+        return words.stream().map(word -> wordCorrect.rightWord(word)?0:1).reduce(0, (x, y)-> x+y);
     }
 }

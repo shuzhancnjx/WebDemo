@@ -35,7 +35,7 @@ public class WordCorrect {
         try{
             return this.spellChecker.exist(word);
         }catch (IOException e){
-            return false;
+            return true;
         }
     }
 }
