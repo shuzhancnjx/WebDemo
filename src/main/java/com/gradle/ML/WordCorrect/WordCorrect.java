@@ -31,7 +31,11 @@ public class WordCorrect {
                 config, false);
     }
 
-    public Boolean rightWord(String word) throws IOException {
-        return this.spellChecker.exist(word);
+    public Boolean rightWord(String word){
+        try{
+            return this.spellChecker.exist(word);
+        }catch (IOException e){
+            return false;
+        }
     }
 }

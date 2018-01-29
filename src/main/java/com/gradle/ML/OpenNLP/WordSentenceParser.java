@@ -16,13 +16,13 @@ import java.util.List;
 @AllArgsConstructor
 public class WordSentenceParser {
 
-    public List<String> sentenceDetetor(String essay) throws FileNotFoundException, IOException {
+    static String trainingMaterialPath = "/Users/zhanshu/workspace/WebDemo/openNLPtrainingFile/";
 
-        InputStream inputStream = new FileInputStream("/Users/zhanshu/workspace/WebDemo/openNLPtrainingFile/en-sent.bin");
+    public List<String> sentenceDetector(String essay) throws FileNotFoundException, IOException {
 
+        InputStream inputStream = new FileInputStream(trainingMaterialPath+ "en-sent.bin");
         SentenceModel sentenceModel = new SentenceModel(inputStream);
         SentenceDetectorME sentenceDetectorMe = new SentenceDetectorME(sentenceModel);
-
         String[] sentences = sentenceDetectorMe.sentDetect(essay);
 
         return Arrays.asList(sentences);
@@ -30,12 +30,9 @@ public class WordSentenceParser {
 
     public List<String> tokenize(String essay) throws FileNotFoundException,IOException {
 
-        InputStream is = new FileInputStream("/Users/zhanshu/workspace/WebDemo/openNLPtrainingFile/en-token.bin");
-
+        InputStream is = new FileInputStream(trainingMaterialPath + "en-token.bin");
         TokenizerModel model = new TokenizerModel(is);
-
         Tokenizer tokenizer = new TokenizerME(model);
-
         String[] token = tokenizer.tokenize(essay);
 
         return Arrays.asList(token);
