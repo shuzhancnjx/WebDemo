@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class HttpRequestParse {
 
-    public Map parseRequst(HttpServletRequest request){
+    public Map parseRequest(HttpServletRequest request){
         Map<String, String> map = new HashMap<>();
 
         Enumeration<String> params = request.getParameterNames();
