@@ -1,13 +1,14 @@
 package com.gradle.ML.EssayStatistics;
 
+import com.google.common.collect.ImmutableList;
 import com.gradle.ML.OpenNLP.WordSentenceParser;
 import com.gradle.ML.WordCorrect.WordCorrect;
 import lombok.AllArgsConstructor;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
+
+import static com.google.common.collect.ImmutableList.toImmutableList;
 
 @AllArgsConstructor
 public class Statistics {
@@ -27,24 +28,18 @@ public class Statistics {
         return wordSentenceParser.sentenceDetector(essay).size();
     }
 
-    public List<String> getNumberOfWrongWords(String essay) throws IOException{
+    public ImmutableList<String> getNumberOfWrongWords(String essay) throws IOException{
+
+        /**
+         *  Only check the words more than 2-letters;
+         */
+
         List<String> words= wordSentenceParser.tokenize(essay);
-        System.out.println(words.toString());
-        List<String> res = new ArrayList<>();
-//        return words.stream().map(word -> wordCorrect.isRightWord(word)?0:1).reduce(0, (x, y)-> x+y);
-//        return words.stream().map(word -> wordCorrect.isRightWord(word)? "": word ).collect(Collectors.toList());
 
-        for(String w:words){
-
-            System.out.println(w.trim() + " "+ wordCorrect.isRightWord(w.trim().toLowerCase()));
-
-            if(!wordCorrect.isRightWord(w.trim().toLowerCase())){
-
-                res.add(w);
-            }
-
-        }
-        return res;
+        return words.stream().filter(word -> word.length()>2) // only check word longer than 2-letter
+                .map(word -> wordCorrect.isRightWord(word.trim())? "": word.trim())
+                .filter(word -> word.length()>0)
+                .collect(toImmutableList());
     }
 
 }
