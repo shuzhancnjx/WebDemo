@@ -23,7 +23,7 @@ public class WordCorrect {
     public WordCorrect() {
         Directory spellIndexDir = new RAMDirectory();
         IndexWriterConfig config = new IndexWriterConfig(Version.LUCENE_36, new StandardAnalyzer(Version.LUCENE_36));
-        try{
+        try {
             this.spellChecker = new SpellChecker(spellIndexDir);
             this.spellChecker.indexDictionary(
                     new PlainTextDictionary(new File(wordsDictionary)),
@@ -36,13 +36,13 @@ public class WordCorrect {
 
     }
 
-    public Boolean isRightWord(String word){
+    public Boolean isRightWord(String word) {
 
         // todo, add a speical whitelist for special names, brand and new words
 
-        try{
+        try {
             return spellChecker.exist(word);
-        }catch (IOException e){
+        } catch (IOException e){
             throw new IllegalArgumentException( "Spell checker closed");
 
         }
