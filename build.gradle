@@ -19,7 +19,10 @@ dependencies {
     compile group: 'org.apache.opennlp', name: 'opennlp-tools', version: '1.8.4'
     compile group: 'org.apache.lucene',  name: 'lucene-spellchecker', version: '3.6.2'
     compile group: 'org.apache.lucene',  name: 'lucene-core', version: '3.6.2'
-    compile group: 'com.google.guava', name: 'guava', version: '24.0-jre'
+    compile group: 'com.google.guava',   name: 'guava', version: '24.0-jre'
+    compile group: 'org.apache.poi',     name: 'poi', version: '3.17'
+    compile group: 'org.apache.poi',     name: 'poi-ooxml', version: '3.17'
+    compile group: 'org.apache.poi',     name: 'poi-scratchpad', version: '3.17'
 }
 group 'WebDemo'
 version '1.0-SNAPSHOT'
